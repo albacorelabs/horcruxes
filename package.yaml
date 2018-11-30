@@ -1,0 +1,51 @@
+name:                Hocruxes
+version:             0.1.0.0
+github:              "albacorelabs/Hocruxes"
+license:             BSD3
+author:              "Albacore"
+maintainer:          "albacore.io"
+copyright:           "2018 Albacore"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/albacorelabs/Hocruxes#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- cryptonite
+- split
+- bytestring
+- base16-bytestring
+
+library:
+  source-dirs: src
+
+executables:
+  Hocruxes-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -Wall
+    - -Werror
+    dependencies:
+    - Hocruxes
+
+tests:
+  Hocruxes-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -Wall
+    - -Werror
+    dependencies:
+    - Hocruxes
+    - QuickCheck
+    - cryptonite
