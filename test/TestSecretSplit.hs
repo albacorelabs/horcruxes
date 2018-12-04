@@ -6,7 +6,7 @@
 module TestSecretSplit where
 
 import ECCSecretSplit
-import HocruxHelpers
+import HorcruxHelpers
 import Crypto.PubKey.ECC.Generate
 import Crypto.PubKey.ECC.Prim (scalarGenerate)
 import Crypto.PubKey.ECC.Types
@@ -35,12 +35,12 @@ instance Arbitrary Point where
 prop_compress_decompress :: Point -> Property
 prop_compress_decompress p =  monadicIO $ do
     let crv = getCurveByName SEC_p256k1    
-    recreated_p <- run $ ((decompress_hocrux crv) . compress_hocrux) p
+    recreated_p <- run $ ((decompress_horcrux crv) . compress_horcrux) p
     assert $ recreated_p == p
         
 prop_split_reconstruct :: Curve -> Secret_Shards -> Property 
 prop_split_reconstruct crv Secret_Shards{..} = monadicIO $ do
     secret <- run $ (return . generateQ) crv <*> (scalarGenerate crv)
-    hocruxes <- run $ split_hocrux m n secret
-    let recovered_secret = reconstruct_hocrux hocruxes
+    horcruxes <- run $ split_horcrux m n secret
+    let recovered_secret = reconstruct_horcrux horcruxes
     assert $ recovered_secret == secret

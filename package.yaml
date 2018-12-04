@@ -1,6 +1,6 @@
-name:                Hocruxes
+name:                Horcruxes
 version:             0.1.0.0
-github:              "albacorelabs/Hocruxes"
+github:              "albacorelabs/Horcruxes"
 license:             BSD3
 author:              "Albacore"
 maintainer:          "albacore.io"
@@ -10,7 +10,7 @@ extra-source-files:
 - README.md
 - ChangeLog.md
 
-description:         Please see the README on GitHub at <https://github.com/albacorelabs/Hocruxes#readme>
+description:         Please see the README on GitHub at <https://github.com/albacorelabs/Horcruxes#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -18,12 +18,14 @@ dependencies:
 - split
 - bytestring
 - base16-bytestring
+- memory
+- cereal
 
 library:
   source-dirs: src
 
 executables:
-  Hocruxes-exe:
+  Horcruxes-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -33,10 +35,10 @@ executables:
     - -Wall
     - -Werror
     dependencies:
-    - Hocruxes
+    - Horcruxes
 
 tests:
-  Hocruxes-test:
+  Horcruxes-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -46,6 +48,6 @@ tests:
     - -Wall
     - -Werror
     dependencies:
-    - Hocruxes
+    - Horcruxes
     - QuickCheck
     - cryptonite

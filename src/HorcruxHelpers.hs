@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# OPTIONS_GHC -fno-warn-type-defaults #-}
 
-module HocruxHelpers (compress_hocrux,decompress_hocrux) where
+module HorcruxHelpers (compress_horcrux,decompress_horcrux) where
 import qualified Crypto.Number.Generate as GenNum
 import Crypto.Number.ModArithmetic
 import Crypto.PubKey.ECC.Types
@@ -14,16 +14,16 @@ import Prelude hiding (last,head,tail,drop,take)
 import Crypto.Number.Serialize (i2osp,os2ip)
 
 
-compress_hocrux :: Point -> ByteString
-compress_hocrux PointO = error "You're at the 0 point mate"
-compress_hocrux (Point x y) 
+compress_horcrux :: Point -> ByteString
+compress_horcrux PointO = error "You're at the 0 point mate"
+compress_horcrux (Point x y) 
     | y `mod` 2 == 0 = B16.encode $ cons (2 :: Word8) $ i2osp x
     | otherwise      = B16.encode $ cons (3 :: Word8) $ i2osp x
 
 
-decompress_hocrux :: MonadRandom m => Curve -> ByteString -> m Point
-decompress_hocrux (CurveF2m _) _ = error "Curve must be prime of type Fp"
-decompress_hocrux (CurveFP  (CurvePrime p _)) bs = do
+decompress_horcrux :: MonadRandom m => Curve -> ByteString -> m Point
+decompress_horcrux (CurveF2m _) _ = error "Curve must be prime of type Fp"
+decompress_horcrux (CurveFP  (CurvePrime p _)) bs = do
     let parityBit = take 2 bs
     let xCoord = (os2ip . fst . B16.decode) $ drop 2 bs
     root <- cipolla_sqrt p $ (xCoord^3 + 7) `mod` p

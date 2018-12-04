@@ -1,3 +1,3 @@
-# Changelog for Hocruxes
+# Changelog for Horcruxes
 
 ## Unreleased changes
